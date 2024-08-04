@@ -19,13 +19,9 @@ public class UserLoader {
         // з допомогою вбудованих засобів бібліотеки https://mvnrepository.com/artifact/com.google.code.gson/gson/2.10.1
         // десеріалізує контент JSON файлу у список з об*єктів типу User і повертає список
         Gson gson = new Gson();
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        StringBuilder usersJson = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            usersJson.append(line);
-        }
-        Type collectionType = new TypeToken<List<User>>() {}.getType();
-        return gson.fromJson(String.valueOf(usersJson), collectionType);
+        FileReader reader = new FileReader(filePath);
+        Type collectionType = new TypeToken<List<User>>() {
+        }.getType();
+        return gson.fromJson(reader, collectionType);
     }
 }
